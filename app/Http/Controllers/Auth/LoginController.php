@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\UserResource;
 
 class LoginController extends Controller
 {
@@ -12,7 +13,7 @@ class LoginController extends Controller
         $input = $request->validated();
         if (auth()->attempt($input)) {
             request()->session()->regenerate();
-            return auth()->user();
+            return new UserResource(auth()->user());
         }
     }
 }
