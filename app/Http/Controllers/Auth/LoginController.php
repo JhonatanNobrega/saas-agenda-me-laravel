@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
 
 class LoginController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(LoginRequest $request)
     {
-        $login = [
-            "email" => "test@example.com",
-            "password" => "password"
-        ];
-
-        if (auth()->attempt($login)) {
+        $input = $request->validated();
+        if (auth()->attempt($input)) {
             request()->session()->regenerate();
             return auth()->user();
         }
