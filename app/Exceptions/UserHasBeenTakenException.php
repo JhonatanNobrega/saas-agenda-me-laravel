@@ -5,9 +5,9 @@ namespace App\Exceptions;
 use App\Traits\RenderToJson;
 use Exception;
 
-class InvalidAuthenticationException extends Exception
+class UserHasBeenTakenException extends Exception
 {
     use RenderToJson;
-    protected $message = "Your credentials don't match.";
+    protected $message = "This user has been taken!";
     protected $code = 400;
 }
