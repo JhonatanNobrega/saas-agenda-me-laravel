@@ -28,7 +28,7 @@ class WelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome Mail',
+            subject: 'Seja bem-vindo ao ' . config('app.name'),
         );
     }
 
@@ -38,7 +38,7 @@ class WelcomeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.welcome',
+            view: 'emails.welcome',
         );
     }
 
