@@ -13,7 +13,6 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request)
     {
-        sleep(2);
         $input = $request->validated();
         if (User::query()->whereEmail($input['email'])->exists()) {
             throw new UserHasBeenTakenException();
