@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisteredEvent;
 use App\Exceptions\UserHasBeenTakenException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -19,6 +20,7 @@ class RegisterController extends Controller
         }
         $input['password'] = bcrypt($input['password']);
         $user = User::query()->create($input);
+        UserRegisteredEvent::dispatch($user);
         return new UserResource($user);
     }
 }
