@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -18,6 +19,7 @@ class RegisterController extends Controller
             throw new UserHasBeenTakenException();
         }
         $input['password'] = bcrypt($input['password']);
+        $input['token'] = Str::uuid();
         $user = User::query()->create($input);
         UserRegisteredEvent::dispatch($user);
         return new UserResource($user);

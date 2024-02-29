@@ -12,7 +12,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="http://htmlemail.io" target="_blank">Confirmar conta</a>
+                                    <a href="{{ config('app.url_front') }}/verificar-email?token={{ $user->token }}"
+                                        target="_blank">Confirmar conta</a>
                                 </td>
                             </tr>
                         </tbody>
